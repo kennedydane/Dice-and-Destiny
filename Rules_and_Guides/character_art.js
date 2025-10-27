@@ -1,6 +1,40 @@
 const { Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell, HeadingLevel, AlignmentType, WidthType, BorderStyle, ShadingType, LevelFormat, PageBreak } = require('docx');
 const fs = require('fs');
 
+// ============================================================================
+// ART STYLE GUIDELINES
+// ============================================================================
+// These guidelines are used by the Artwork Generator CLI to maintain visual
+// consistency across all generated character art and scene artwork.
+// They are prepended to all image generation prompts.
+// ============================================================================
+
+const ART_STYLE_GUIDELINES = {
+  style_description: `
+    Fantasy illustration style with digital painting aesthetic.
+    Professional character design with expressive features.
+    Warm, rich color palette with natural lighting.
+    High-quality, detailed artwork suitable for both digital display and print.
+  `,
+
+  technical_specs: {
+    resolution: "512x512 pixels minimum, high DPI (300+ for print)",
+    aspect_ratio: "1:1 square format preferred",
+    file_format: "PNG with transparency where appropriate",
+    quality: "High detail, painterly texture, professional finishing"
+  },
+
+  character_specific: {
+    composition: "Full-body or waist-up portrait, character centered and prominent",
+    background: "Simple, non-distracting background that complements the character",
+    clothing: "Detailed armor, robes, and accessories as described",
+    expression: "Clear facial expression showing personality and emotion",
+    lighting: "Dynamic lighting with warm highlights, soft shadows for depth"
+  },
+
+  consistency_notes: "Maintain consistent art style across all race/class combinations. Ensure all characters feel like they belong to the same game world."
+};
+
 const artBorder = { style: BorderStyle.DOUBLE, size: 2, color: "8B4513" };
 const artBorders = { top: artBorder, bottom: artBorder, left: artBorder, right: artBorder };
 
