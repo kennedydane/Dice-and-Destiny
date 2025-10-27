@@ -54,7 +54,7 @@ class AdventureGenerator:
 
     def get_story_acts(self, story: str) -> list[int]:
         """
-        Get list of available acts for a story.
+        Get list of available acts for a story by parsing the .docx file.
 
         Args:
             story: Story name
@@ -63,18 +63,35 @@ class AdventureGenerator:
             List of act numbers
 
         Raises:
-            ValueError: If story doesn't exist
+            ValueError: If story doesn't exist or no Adventure .docx found
         """
         story_path = self.stories_path / story
         if not story_path.exists():
             raise ValueError(f"Story not found: {story}")
 
+        # Look for Adventure_*.docx file in story directory
+        docx_files = list(story_path.glob("Adventure_*.docx"))
+        if not docx_files:
+            raise ValueError(f"No Adventure_*.docx file found in {story}")
+
+        docx_file = docx_files[0]  # Use first match if multiple exist
+
+        # Convert .docx to markdown
+        md_converter = MarkItDown()
+        result = md_converter.convert(str(docx_file))
+        markdown_content = result.text_content
+
+        # Parse markdown to find all "# Act N:" headings
         acts = []
-        for item in story_path.iterdir():
-            if item.is_dir() and item.name.startswith("Act"):
-                # Extract act number from "Act 1", "Act 2", etc.
+        lines = markdown_content.split("\n")
+        for line in lines:
+            if line.startswith("# Act "):
+                # Extract act number from "# Act 1:", "# Act 2:", etc.
                 try:
-                    act_num = int(item.name.split()[-1])
+                    # Get the part after "Act " and before the colon or other text
+                    act_part = line.replace("# Act ", "").strip()
+                    # Handle both "Act 1:" and "Act 1" formats
+                    act_num = int(act_part.split(":")[0].split()[0])
                     acts.append(act_num)
                 except (ValueError, IndexError):
                     pass
@@ -83,37 +100,69 @@ class AdventureGenerator:
 
     def get_act_scenes(self, story: str, act: int) -> list[str]:
         """
-        Get list of available scenes for an act.
+        Get list of available scenes for an act by parsing the .docx file.
 
         Args:
             story: Story name
             act: Act number
 
         Returns:
-            List of scene descriptions
+            List of scene names/identifiers
 
         Raises:
             ValueError: If story or act doesn't exist
         """
-        act_path = self.stories_path / story / f"Act {act}"
-        if not act_path.exists():
+        story_path = self.stories_path / story
+
+        # Look for Adventure_*.docx file in story directory
+        docx_files = list(story_path.glob("Adventure_*.docx"))
+        if not docx_files:
+            raise ValueError(f"No Adventure_*.docx file found in {story}")
+
+        docx_file = docx_files[0]  # Use first match if multiple exist
+
+        # Convert .docx to markdown
+        md_converter = MarkItDown()
+        result = md_converter.convert(str(docx_file))
+        markdown_content = result.text_content
+
+        # Parse markdown to find scenes within the specified act
+        lines = markdown_content.split("\n")
+        scenes = []
+        in_target_act = False
+
+        for line in lines:
+            # Check if we're at an act heading
+            if line.startswith("# Act "):
+                try:
+                    act_part = line.replace("# Act ", "").strip()
+                    act_num = int(act_part.split(":")[0].split()[0])
+                    if act_num == act:
+                        in_target_act = True
+                    elif in_target_act:
+                        # We've moved past the target act
+                        break
+                except (ValueError, IndexError):
+                    pass
+
+            # Collect scene headings (## Scene) within the target act
+            elif in_target_act and line.startswith("## Scene "):
+                # Extract scene identifier from "## Scene 1: The Village Square"
+                heading_text = line.replace("## Scene ", "").strip()
+                # Keep the full text (e.g., "1: The Village Square" or just the heading)
+                scenes.append(heading_text)
+
+        if not in_target_act and not scenes:
             raise ValueError(f"Act {act} not found in story: {story}")
 
-        scenes = []
-        for item in act_path.iterdir():
-            if item.is_dir() and not item.name.startswith("."):
-                # Scene directories are typically "Scene 1", "Scene 2", etc.
-                # For now, we'll use directory names as scene identifiers
-                scenes.append(item.name)
-
-        return sorted(scenes)
+        return sorted(scenes, key=lambda s: (
+            # Sort by numeric part if it's a number, otherwise alphabetically
+            (int(s.split()[0]) if s.split() and s.split()[0].isdigit() else float('inf')), s
+        ))
 
     def get_scene_details(self, story: str, act: int, scene: str) -> dict:
         """
-        Get details about a specific scene.
-
-        In the full implementation, this would read from adventure.js or a manifest file.
-        For now, it returns a basic structure that can be enhanced.
+        Get details about a specific scene by parsing the .docx file.
 
         Args:
             story: Story name
@@ -126,17 +175,25 @@ class AdventureGenerator:
         Raises:
             ValueError: If scene doesn't exist
         """
-        act_path = self.stories_path / story / f"Act {act}"
-        scene_path = act_path / scene
+        # Validate that the scene exists in the story/act by checking available scenes
+        available_scenes = self.get_act_scenes(story, act)
 
-        if not scene_path.exists():
+        # The scene parameter might be just a number or full text like "1: The Village Square"
+        # Check both the exact match and if it starts with the scene number
+        scene_found = False
+        for available_scene in available_scenes:
+            if available_scene == scene or available_scene.startswith(f"{scene}:") or available_scene.startswith(f"{scene} "):
+                scene_found = True
+                break
+
+        if not scene_found:
             raise ValueError(f"Scene '{scene}' not found in {story} Act {act}")
 
         return {
             "story": story,
             "act": act,
             "scene": scene,
-            "path": str(scene_path),
+            "path": f"{story}/Act {act}/{scene}",
             "description": self._build_scene_description(story, act, scene),
         }
 
@@ -249,6 +306,114 @@ class AdventureGenerator:
         # Fallback to generic description
         return f"Scene from {story}, Act {act}: {scene.replace('_', ' ')}"
 
+    def _load_npc_descriptions_from_docx(self, story: str) -> dict:
+        """
+        Extract NPC descriptions from the story's .docx file.
+
+        Converts the .docx to markdown using markitdown, then extracts all NPC
+        descriptions from the "NPC Descriptions" section.
+
+        Args:
+            story: Story name
+
+        Returns:
+            Dictionary with NPC names as keys and descriptions as values
+        """
+        try:
+            story_path = self.stories_path / story
+
+            # Look for Adventure_*.docx file in story directory
+            docx_files = list(story_path.glob("Adventure_*.docx"))
+            if not docx_files:
+                logger.debug(f"No Adventure_*.docx file found in {story_path}")
+                return {}
+
+            docx_file = docx_files[0]  # Use first match if multiple exist
+
+            # Convert .docx to markdown
+            md_converter = MarkItDown()
+            result = md_converter.convert(str(docx_file))
+            markdown_content = result.text_content
+
+            # Parse the markdown to find the NPC Descriptions section
+            lines = markdown_content.split("\n")
+            npcs = {}
+            current_npc = None
+            current_description = []
+            in_npc_section = False
+
+            for i, line in enumerate(lines):
+                # Check for "NPC Descriptions" heading
+                if line.startswith("# NPC Descriptions"):
+                    in_npc_section = True
+                    continue
+
+                if not in_npc_section:
+                    continue
+
+                # Stop at next major section
+                if line.startswith("# Act") and "NPC Descriptions" not in line:
+                    break
+
+                # NPC headings are level 2 (##)
+                if line.startswith("## "):
+                    # Save previous NPC if exists
+                    if current_npc and current_description:
+                        description = " ".join(current_description).strip()
+                        description = re.sub(r"\s+", " ", description)
+                        npcs[current_npc] = description
+
+                    # Extract NPC name (before the dash)
+                    heading_text = line.replace("##", "").strip()
+                    if " - " in heading_text:
+                        current_npc = heading_text.split(" - ")[0].strip()
+                    else:
+                        current_npc = heading_text.strip()
+
+                    current_description = []
+
+                elif in_npc_section and current_npc:
+                    # Collect NPC description content
+                    line = line.strip()
+                    if line and not line.startswith("---"):
+                        # Skip role/appearance/personality labels and just keep descriptions
+                        if ":" in line:
+                            # Extract just the description part after the colon
+                            parts = line.split(":", 1)
+                            if len(parts) > 1:
+                                current_description.append(parts[1].strip())
+                        else:
+                            current_description.append(line)
+
+            # Save last NPC
+            if current_npc and current_description:
+                description = " ".join(current_description).strip()
+                description = re.sub(r"\s+", " ", description)
+                npcs[current_npc] = description
+
+            if npcs:
+                logger.debug(f"Extracted {len(npcs)} NPC descriptions from {docx_file.name}")
+            else:
+                logger.debug(f"No NPC descriptions found in {docx_file.name}")
+
+            return npcs
+
+        except Exception as e:
+            logger.warning(f"Error loading NPC descriptions from docx: {e}")
+            return {}
+
+    def get_npc_descriptions(self, story: str) -> dict:
+        """
+        Get NPC descriptions for a story.
+
+        Args:
+            story: Story name
+
+        Returns:
+            Dictionary with NPC names as keys and descriptions as values
+        """
+        return self._load_npc_descriptions_from_docx(story)
+
     def validate_style(self, style: str) -> str:
         """
         Validate and normalize art style name.
@@ -299,13 +464,17 @@ class AdventureGenerator:
         if npc_type:
             scene_description += f" Include a {npc_type} NPC."
 
+        # Load NPC descriptions for visual consistency
+        npc_descriptions = self.get_npc_descriptions(story)
+
         # Build the prompt with story/act/scene information for image text
         prompt = build_adventure_prompt(
             scene_description=scene_description,
             story_name=story.replace("_", " "),
             act=act,
             scene_name=scene.replace("_", " "),
-            style=validated_style
+            style=validated_style,
+            npc_descriptions=npc_descriptions
         )
 
         return prompt

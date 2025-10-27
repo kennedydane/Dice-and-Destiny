@@ -255,7 +255,7 @@ Create a fantasy scene illustration for a tabletop RPG adventure:
 SCENE DESCRIPTION:
 {scene_description}
 
-IMPORTANT REQUIREMENTS:
+{npc_section}IMPORTANT REQUIREMENTS:
 - NO adventurer player characters in the scene
 - Focus on the environment, NPCs, and atmosphere
 - Include any mentioned NPCs, creatures, or key objects
@@ -328,7 +328,7 @@ def build_character_prompt(race: str, class_name: str, gender: str = "a", style:
     return prompt
 
 
-def build_adventure_prompt(scene_description: str, story_name: str = "Unknown Story", act: int = 1, scene_name: str = "Scene", style: str = "fantasy") -> str:
+def build_adventure_prompt(scene_description: str, story_name: str = "Unknown Story", act: int = 1, scene_name: str = "Scene", style: str = "fantasy", npc_descriptions: dict = None) -> str:
     """
     Build a complete adventure scene prompt with style guidelines.
 
@@ -338,16 +338,26 @@ def build_adventure_prompt(scene_description: str, story_name: str = "Unknown St
         act: Act number
         scene_name: Scene name or identifier
         style: Art style (fantasy, photorealistic, cartoon, watercolor, concept_art, oil_painting)
+        npc_descriptions: Optional dictionary of NPC names and their descriptions for consistent artwork
 
     Returns:
         Complete formatted prompt for image generation
     """
+    # Build NPC section if descriptions are provided
+    npc_section = ""
+    if npc_descriptions and isinstance(npc_descriptions, dict) and npc_descriptions:
+        npc_section = "NPC CHARACTER DESCRIPTIONS (for visual consistency):\n"
+        for npc_name, description in npc_descriptions.items():
+            npc_section += f"- {npc_name}: {description}\n"
+        npc_section += "\n"
+
     prompt = ADVENTURE_PROMPT_TEMPLATE.format(
         style_guidelines=get_style_guidelines(style),
         scene_description=scene_description,
         story_name=story_name,
         act=act,
-        scene_name=scene_name
+        scene_name=scene_name,
+        npc_section=npc_section
     )
 
     return prompt

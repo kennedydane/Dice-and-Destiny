@@ -120,9 +120,82 @@ const doc = new Document({
       new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Make it fun - ", bold: true }), new TextRun("Use silly voices and sound effects")] }),
       new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Let them win - ", bold: true }), new TextRun("They should feel like heroes!")] }),
       new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Take breaks - ", bold: true }), new TextRun("Halfway through, take a snack break")] }),
-      
+
       new Paragraph({ children: [new PageBreak()] }),
-      
+
+      // NPC DESCRIPTIONS
+      new Paragraph({ heading: HeadingLevel.HEADING_1, children: [new TextRun("NPC Descriptions")] }),
+      new Paragraph({ children: [new TextRun("These characters appear throughout the adventure. Use these descriptions to keep their portrayal consistent!")] }),
+
+      new Paragraph({ text: "" }),
+      new Paragraph({ heading: HeadingLevel.HEADING_2, children: [new TextRun("Sparkle - Baby Dragon")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Role: ", bold: true }), new TextRun("The heart of the adventure - the baby dragon everyone is trying to rescue")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Appearance: ", bold: true }), new TextRun("Smaller than a dog, purple and pink scales that shimmer, big hopeful eyes, cute and endearing")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Personality: ", bold: true }), new TextRun("Very friendly, loves flowers, grateful and encouraging. Has a cute voice! Stays with the party after rescue and provides hints when needed.")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Scenes: ", bold: true }), new TextRun("Act 1 Scene 5 (rescue), Act 2 Scenes 6 and all gem quests, Act 3 Scenes 7-10")] }),
+
+      new Paragraph({ text: "" }),
+      new Paragraph({ heading: HeadingLevel.HEADING_2, children: [new TextRun("Farmer Brown - Elderly Human")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Role: ", bold: true }), new TextRun("The quest-giver who introduces the adventure")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Appearance: ", bold: true }), new TextRun("Old, weathered face, kind eyes, humble farmer's clothes")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Personality: ", bold: true }), new TextRun("Friendly and desperate, cares deeply about Sparkle. Trusting in the heroes. Speaks plainly and directly.")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Scenes: ", bold: true }), new TextRun("Act 1 Scene 1 (introduction and quest hook)")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Reward Given: ", bold: true }), new TextRun("Small bag with 3 healing potions (heals 1d6 HP each)")] }),
+
+      new Paragraph({ text: "" }),
+      new Paragraph({ heading: HeadingLevel.HEADING_2, children: [new TextRun("Goblins - Common Minions")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Role: ", bold: true }), new TextRun("Grumbletooth's servants and guards throughout the adventure")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Appearance: ", bold: true }), new TextRun("Mean-looking creatures carrying clubs, grumpy expressions. Standard goblins - not unique or distinctive")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Personality: ", bold: true }), new TextRun("Simple-minded, follow orders, can be talked to and reasoned with. Not inherently evil, just followers.")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Combat Stats: ", bold: true }), new TextRun("HP 5, Attack needs 10+, Damage 1d4")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Scenes: ", bold: true }), new TextRun("Act 1 Scene 2 (3 guards), Act 3 Scene 8 (4 guards with Grumbletooth)")] }),
+
+      new Paragraph({ text: "" }),
+      new Paragraph({ heading: HeadingLevel.HEADING_2, children: [new TextRun("King Grumbletooth - Goblin King")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Role: ", bold: true }), new TextRun("The main antagonist - but more silly villain than truly evil")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Appearance: ", bold: true }), new TextRun("Bigger than other goblins, wears a crown made of twigs, carries a scepter with a fake gem on top, very grumpy expression")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Personality: ", bold: true }), new TextRun("Grumpy and childlike - having a tantrum because he feels unimportant. Lonely and misunderstood. Doesn't truly understand magic. Can be reasoned with or befriended.")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Combat Stats: ", bold: true }), new TextRun("HP 15, Attack needs 12+, Damage 1d8. Gives up and cries after taking 7 damage.")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Scenes: ", bold: true }), new TextRun("Act 3 Scene 8-9 (confrontation and resolution)")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Key Point: ", bold: true }), new TextRun("If treated kindly, becomes a friend and ally! Teaches lesson about compassion.")] }),
+
+      new Paragraph({ text: "" }),
+      new Paragraph({ heading: HeadingLevel.HEADING_2, children: [new TextRun("Water Spirit - Elemental")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Role: ", bold: true }), new TextRun("Guardian of the Sapphire of Water gem")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Appearance: ", bold: true }), new TextRun("Looks like a girl made of flowing water, feminine features, sitting on a rock in a musical stream")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Personality: ", bold: true }), new TextRun("Friendly and kind, but fearful. Worried about fish biting. Becomes happy and grateful when helped.")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Scenes: ", bold: true }), new TextRun("Act 2 Scene 6 - Gem Quest 1 (The Singing Stream)")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Reward Given: ", bold: true }), new TextRun("Each hero receives a water breathing bubble (one-time use: breathe underwater 10 minutes)")] }),
+
+      new Paragraph({ text: "" }),
+      new Paragraph({ heading: HeadingLevel.HEADING_2, children: [new TextRun("Rock Elemental - Earth Guardian")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Role: ", bold: true }), new TextRun("Guardian of the Emerald of Earth gem")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Appearance: ", bold: true }), new TextRun("Massive boulder with the Emerald embedded in it. When awakened, sits up and reveals itself as a living elemental with a deep, rumbly voice")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Personality: ", bold: true }), new TextRun("Grumpy when awakened but not evil - just disturbed from sleep. Reasonable if approached with respect and kindness. Rewards friendly interactions.")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Combat Stats: ", bold: true }), new TextRun("HP 12, Attack needs 12+, Damage 1d8. Prefers peace to combat.")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Scenes: ", bold: true }), new TextRun("Act 2 Scene 6 - Gem Quest 2 (The Crystal Cave)")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Reward Given: ", bold: true }), new TextRun("If treated kindly, becomes a friend and gives each hero a glowing crystal")] }),
+
+      new Paragraph({ text: "" }),
+      new Paragraph({ heading: HeadingLevel.HEADING_2, children: [new TextRun("Phoenix - Fire Bird")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Role: ", bold: true }), new TextRun("Kind guide and helper for the Ruby of Fire gem quest")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Appearance: ", bold: true }), new TextRun("Bright orange and red plumage, beautiful and majestic, circles overhead before landing")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Personality: ", bold: true }), new TextRun("Kind and encouraging, speaks with a wise and gentle voice. Proud of the heroes' accomplishments. Speaks in friendly, formal manner.")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Scenes: ", bold: true }), new TextRun("Act 2 Scene 6 - Gem Quest 3 (Sunset Grove)")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Reward Given: ", bold: true }), new TextRun("Each hero receives a feather that keeps them warm forever")] }),
+
+      new Paragraph({ text: "" }),
+      new Paragraph({ heading: HeadingLevel.HEADING_2, children: [new TextRun("Fire Salamander - Playful Elemental")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Role: ", bold: true }), new TextRun("Puzzle guardian for the Ruby of Fire gem - guards through games rather than combat")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Appearance: ", bold: true }), new TextRun("Small, bright orange lizard made of flames (but not burning!). Glowing and vibrant, cute and playful")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Personality: ", bold: true }), new TextRun("Playful, mischievous, giggly. Loves games and riddles. Kind-hearted, not threatening. Gives second chances if heroes fail.")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Games Offered: ", bold: true }), new TextRun("Riddles, Hide and Seek, or Dance Contest")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Scenes: ", bold: true }), new TextRun("Act 2 Scene 6 - Gem Quest 3 (Sunset Grove)")] }),
+      new Paragraph({ numbering: { reference: "bullet-list", level: 0 }, children: [new TextRun({ text: "Key Point: ", bold: true }), new TextRun("This is a puzzle encounter, not combat - rewards creativity and fun")] }),
+
+      new Paragraph({ text: "" }),
+      new Paragraph({ children: [new PageBreak()] }),
+
       // ACT 1 STARTS
       new Paragraph({ heading: HeadingLevel.HEADING_1, children: [new TextRun("Act 1: Rescue Sparkle!")] }),
       new Paragraph({ children: [new TextRun({ text: "Estimated Time: 30-40 minutes", italics: true })] }),
