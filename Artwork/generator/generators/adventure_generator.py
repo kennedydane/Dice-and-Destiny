@@ -5,9 +5,14 @@ Handles generation of adventure scene artwork prompts based on story, act, and s
 """
 
 import os
+import logging
+import re
 from pathlib import Path
 from typing import Optional
+from markitdown import MarkItDown
 from ..prompts import build_adventure_prompt
+
+logger = logging.getLogger(__name__)
 
 
 class AdventureGenerator:
@@ -133,12 +138,98 @@ class AdventureGenerator:
             "description": self._build_scene_description(story, act, scene),
         }
 
+    def _load_scene_content_from_docx(self, story: str, act: int, scene: str) -> Optional[str]:
+        """
+        Extract scene content from the story's .docx file.
+
+        Converts the .docx to markdown using markitdown, then extracts the read-aloud text
+        for the specified scene.
+
+        Args:
+            story: Story name
+            act: Act number
+            scene: Scene name/identifier
+
+        Returns:
+            Scene narrative text if found, None otherwise
+        """
+        try:
+            story_path = self.stories_path / story
+
+            # Look for Adventure_*.docx file in story directory
+            docx_files = list(story_path.glob("Adventure_*.docx"))
+            if not docx_files:
+                logger.debug(f"No Adventure_*.docx file found in {story_path}")
+                return None
+
+            docx_file = docx_files[0]  # Use first match if multiple exist
+
+            # Convert .docx to markdown
+            md_converter = MarkItDown()
+            result = md_converter.convert(str(docx_file))
+            markdown_content = result.text_content
+
+            # Parse the markdown to find the scene
+            # Convert scene identifier to likely heading format
+            # "Scene_1" -> "Scene 1" or similar variations
+            scene_variations = [
+                f"Scene {scene.split('_')[-1]}",  # Scene_1 -> Scene 1
+                scene.replace("_", " "),  # Scene_1 -> Scene 1
+                scene,
+            ]
+
+            # Split by lines and find the target scene
+            lines = markdown_content.split("\n")
+            scene_content = []
+            in_target_scene = False
+
+            for i, line in enumerate(lines):
+                # Check if this line is a heading (starts with ##)
+                if line.startswith("##"):
+                    # Check if it matches one of our scene variations
+                    heading_text = line.replace("##", "").strip()
+
+                    for variation in scene_variations:
+                        if variation.lower() in heading_text.lower():
+                            in_target_scene = True
+                            scene_content = []
+                            break
+                    else:
+                        # Different heading found - we're past the target scene
+                        if in_target_scene:
+                            break
+
+                elif in_target_scene:
+                    # Stop if we hit a new heading
+                    if line.startswith("#"):
+                        break
+
+                    # Collect text content
+                    line = line.strip()
+                    if line and not any(skip in line for skip in ["DM GUIDANCE", "DM TIPS", "---", "**DM", "|"]):
+                        scene_content.append(line)
+
+            if scene_content:
+                # Join content and clean up
+                description = " ".join(scene_content)
+                # Remove extra whitespace
+                description = re.sub(r"\s+", " ", description).strip()
+                logger.debug(f"Extracted scene content from {docx_file.name} for {story} Act {act} Scene {scene}")
+                return description
+
+            logger.debug(f"Could not extract scene content for {scene} in {docx_file.name}")
+            return None
+
+        except Exception as e:
+            logger.warning(f"Error loading scene content from docx: {e}")
+            return None
+
     def _build_scene_description(self, story: str, act: int, scene: str) -> str:
         """
         Build a description for a scene based on available information.
 
-        This is a basic implementation. In a full version, this would read from
-        the adventure.js file or a separate manifest.
+        Attempts to extract content from the story's .docx file first.
+        Falls back to a generic description if extraction fails.
 
         Args:
             story: Story name
@@ -148,7 +239,12 @@ class AdventureGenerator:
         Returns:
             Scene description for prompt generation
         """
-        # Basic description - in full implementation, would read from adventure.js
+        # Try to load from .docx first
+        docx_content = self._load_scene_content_from_docx(story, act, scene)
+        if docx_content:
+            return docx_content
+
+        # Fallback to generic description
         return f"Scene from {story}, Act {act}: {scene.replace('_', ' ')}"
 
     def generate_prompt(
