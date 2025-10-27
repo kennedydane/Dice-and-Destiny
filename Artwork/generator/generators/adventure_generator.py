@@ -277,7 +277,7 @@ class AdventureGenerator:
         # Build the prompt with story/act/scene information for image text
         prompt = build_adventure_prompt(
             scene_description=scene_description,
-            story_name=story,
+            story_name=story.replace("_", " "),
             act=act,
             scene_name=scene.replace("_", " ")
         )
