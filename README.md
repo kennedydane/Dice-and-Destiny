@@ -49,15 +49,21 @@ Dice-and-Destiny/
 │           └── Act 1/            # Scene artwork organized by act
 │
 ├── Rules_and_Guides/
-│   ├── Beginners_Rulebook.docx
-│   ├── Character_Art_Guide.docx
-│   ├── Character_Sheets.docx
-│   └── Getting_Started_Guide.docx
+│   ├── rulebook.js               # Source file for Beginners Rulebook
+│   ├── Beginners_Rulebook.docx   # Generated from rulebook.js
+│   ├── character_art.js          # Source file for Character Art Guide
+│   ├── Character_Art_Guide.docx  # Generated from character_art.js
+│   ├── character_sheets.js       # Source file for Character Sheets
+│   ├── Character_Sheets.docx     # Generated from character_sheets.js
+│   ├── getting_started.js        # Source file for Getting Started Guide
+│   └── Getting_Started_Guide.docx # Generated from getting_started.js
 │
 └── Stories/
     └── The_Dragons_Friends/      # First campaign module
-        ├── Adventure_The_Dragons_Friends.docx
-        └── Game_Maps.docx
+        ├── adventure.js          # Source file for adventure
+        ├── Adventure_The_Dragons_Friends.docx # Generated from adventure.js
+        ├── maps.js               # Source file for maps
+        └── Game_Maps.docx        # Generated from maps.js
 ```
 
 ## Game System
@@ -121,10 +127,90 @@ Located in `Stories/The_Dragons_Friends/`:
 - Create additional character artwork in `Artwork/Characters/` following the race/class organization
 - Add scene artwork to `Artwork/Act 1/` or create new act directories as your campaign progresses
 
-## File Formats
+## Document Generation Workflow
 
-- **Rules & Documents**: Microsoft Word format (.docx)
+All `.docx` game documents are **programmatically generated** from JavaScript source files using the Node.js `docx` library. This ensures consistency, version control, and maintainability.
+
+### Prerequisites
+
+- **Node.js** (v14 or higher) - [Download here](https://nodejs.org/)
+- **npm** (comes with Node.js)
+
+### Setup
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+2. This installs the `docx` package needed to generate documents.
+
+### Document Source Files & Generation
+
+| JavaScript File | Generates | Location |
+|---|---|---|
+| `rulebook.js` | Beginners_Rulebook.docx | Rules_and_Guides/ |
+| `character_sheets.js` | Character_Sheets.docx | Rules_and_Guides/ |
+| `character_art.js` | Character_Art_Guide.docx | Rules_and_Guides/ |
+| `getting_started.js` | Getting_Started_Guide.docx | Rules_and_Guides/ |
+| `adventure.js` | Adventure_The_Dragons_Friends.docx | Stories/The_Dragons_Friends/ |
+| `maps.js` | Game_Maps.docx | Stories/The_Dragons_Friends/ |
+
+### Editing Documents
+
+**Important**: Edit the `.js` files, NOT the `.docx` files. The `.docx` files are generated outputs.
+
+#### Workflow:
+1. **Edit** the JavaScript source file (e.g., `rulebook.js`)
+2. **Generate** the document by running: `node filename.js`
+3. **Verify** the output `.docx` file looks correct
+4. **Commit** the `.js` file to version control
+
+#### Example - Editing the Rulebook:
+
+```bash
+# Edit the source file
+nano Rules_and_Guides/rulebook.js
+
+# Generate the updated document
+node Rules_and_Guides/rulebook.js
+
+# Verify the output
+# (Check that Rules_and_Guides/Beginners_Rulebook.docx was updated)
+
+# Commit your changes
+git add Rules_and_Guides/rulebook.js
+git commit -m "Update rulebook: add new class ability"
+```
+
+#### Example - Generating All Documents:
+
+```bash
+# Navigate to Rules_and_Guides
+cd Rules_and_Guides
+node rulebook.js
+node character_sheets.js
+node character_art.js
+node getting_started.js
+
+# Navigate to Stories/The_Dragons_Friends
+cd ../Stories/The_Dragons_Friends/
+node adventure.js
+node maps.js
+```
+
+### File Formats
+
+- **Source Files**: JavaScript (.js)
+  - Contains the source of truth for game content
+  - Edit these files to make changes
+  - Use `node filename.js` to generate the corresponding `.docx`
+
+- **Generated Documents**: Microsoft Word format (.docx)
+  - Automatically generated from `.js` files
+  - Do not edit directly (changes will be lost on next generation)
   - Open with Microsoft Word, Google Docs, LibreOffice, or compatible applications
+
 - **Artwork**: PNG format (.png)
   - Ready for digital display and printing
 
