@@ -274,8 +274,13 @@ class AdventureGenerator:
         if npc_type:
             scene_description += f" Include a {npc_type} NPC."
 
-        # Build the prompt
-        prompt = build_adventure_prompt(scene_description)
+        # Build the prompt with story/act/scene information for image text
+        prompt = build_adventure_prompt(
+            scene_description=scene_description,
+            story_name=story,
+            act=act,
+            scene_name=scene
+        )
 
         return prompt
 

@@ -159,6 +159,11 @@ Additional Requirements:
 - Add interesting details that suggest their personality and experience
 - Ensure the background complements the character without overwhelming them
 
+IMAGE TEXT:
+- At the bottom of the image, include the text: "{race} {class_name}"
+- Use a fantasy-appropriate font style that fits the character's aesthetic
+- Position the text clearly visible but not distracting
+
 Generate a high-quality fantasy illustration that brings this character to life!
 """
 
@@ -180,6 +185,12 @@ IMPORTANT REQUIREMENTS:
 - Suitable for a fantasy adventure for young players (ages 5-8)
 - Include any mentioned NPCs, creatures, or key objects
 - Create an immersive, magical atmosphere
+
+IMAGE TEXT:
+- At the top of the image, include the text: "{story_name}"
+- At the bottom of the image, include the text: "Act {act} - {scene_name}"
+- Use a fantasy-appropriate font style that fits the scene's aesthetic
+- Position text clearly visible but not distracting from the scene
 
 Generate a high-quality fantasy scene that sets the mood for this adventure location!
 """
@@ -241,19 +252,25 @@ def build_character_prompt(race: str, class_name: str, gender: str = "a") -> str
     return prompt
 
 
-def build_adventure_prompt(scene_description: str) -> str:
+def build_adventure_prompt(scene_description: str, story_name: str = "Unknown Story", act: int = 1, scene_name: str = "Scene") -> str:
     """
     Build a complete adventure scene prompt with style guidelines.
 
     Args:
         scene_description: Detailed description of the scene to generate
+        story_name: Name of the adventure story
+        act: Act number
+        scene_name: Scene name or identifier
 
     Returns:
         Complete formatted prompt for image generation
     """
     prompt = ADVENTURE_PROMPT_TEMPLATE.format(
         style_guidelines=ART_STYLE_GUIDELINES,
-        scene_description=scene_description
+        scene_description=scene_description,
+        story_name=story_name,
+        act=act,
+        scene_name=scene_name
     )
 
     return prompt
