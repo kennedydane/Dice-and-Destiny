@@ -279,7 +279,7 @@ class AdventureGenerator:
             scene_description=scene_description,
             story_name=story,
             act=act,
-            scene_name=scene
+            scene_name=scene.replace("_", " ")
         )
 
         return prompt
