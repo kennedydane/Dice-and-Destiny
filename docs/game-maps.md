@@ -1,24 +1,18 @@
 Game Maps & Boards
 
-*The Dragon\'s Friends Adventure*
+*The Dragon's Friends Adventure*
 
-Use these maps to track player movement and encounters during your
-adventure!
+Use these maps to track player movement and encounters during your adventure!
 
-Map 1: Path to the Windmill
+# Map 1: Path to the Windmill
 
 *Use this map for Scene 2 (Goblin encounter)*
 
-  ----------- ----------- ----------- ----------- ----------- -----------
-  **🏘️        **🌸        **🌸        **🌳 Bush** **🌸 Path** **🏚️ Mill**
-  Village**   Flowers**   Flowers**                           
-
-  **🏡        **🌿        **⚔️        **🌳 Bush** **🌸 Path** **🎯 Goal**
-  Start**     Grass**     Goblins**                           
-
-  **🌸        **🌿        **🌸        **🌳 Tree** **🌸 Path** **🌸
-  Flowers**   Grass**     Flowers**                           Flowers**
-  ----------- ----------- ----------- ----------- ----------- -----------
+|  |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- |
+| **🏘️ Village** | **🌸 Flowers** | **🌸 Flowers** | **🌳 Bush** | **🌸 Path** | **🏚️ Mill** |
+| **🏡 Start** | **🌿 Grass** | **⚔️ Goblins** | **🌳 Bush** | **🌸 Path** | **🎯 Goal** |
+| **🌸 Flowers** | **🌿 Grass** | **🌸 Flowers** | **🌳 Tree** | **🌸 Path** | **🌸 Flowers** |
 
 **KEY:**
 
@@ -30,26 +24,17 @@ Map 1: Path to the Windmill
 
 🌸 = Path / Safe areas
 
-Map 2: Windmill - Ground Floor
+# Map 2: Windmill - Ground Floor
 
 *Use this map for Scene 3 (Exploring the mill)*
 
-  ----------- ----------- ----------- ----------- ----------- -----------
-  **📦        **📦                    **🔒        **🎒        
-  Grain**     Grain**                 Locked**    Storage**   
-
-  **📦        **🔑 Key!**             **🚪 Door** **🛡️        
-  Grain**                                         Shield**    
-
-                          **⭐ Open               **🪔        
-                          Space**                 Lantern**   
-
-              **📦                                            **🪜 Stairs
-              Grain**                                         UP!**
-
-  **🚪                                **📦        **📦        
-  ENTER**                             Grain**     Grain**     
-  ----------- ----------- ----------- ----------- ----------- -----------
+|  |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- |
+| **📦 Grain** | **📦 Grain** |  | **🔒 Locked** | **🎒 Storage** |  |
+| **📦 Grain** | **🔑 Key!** |  | **🚪 Door** | **🛡️ Shield** |  |
+|  |  | **⭐ Open Space** |  | **🪔 Lantern** |  |
+|  | **📦 Grain** |  |  |  | **🪜 Stairs UP!** |
+| **🚪 ENTER** |  |  | **📦 Grain** | **📦 Grain** |  |
 
 **KEY:**
 
@@ -69,21 +54,16 @@ Map 2: Windmill - Ground Floor
 
 🪜 = Stairs to second floor
 
-Map 3: Windmill - Upper Floor
+# Map 3: Windmill - Upper Floor
 
 *Use this map for Scenes 4 & 5 (Spider and Sparkle)*
 
-  ----------- ----------- ------------ ----------- ----------- -----------
-                          **🐉         **🔒 Cage**             
-                          Sparkle!**                           
-
-              **🌾 Hay**  **🔑 Key**   **🌾 Hay**              
-
-                                                               **⚙️ Gear**
-
-  **🪜 Stairs **🕸️ Web**  **🕷️         **🕸️ Web**              **⚙️ Gear**
-  DOWN**                  Spider!**                            
-  ----------- ----------- ------------ ----------- ----------- -----------
+|  |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- |
+|  |  | **🐉 Sparkle!** | **🔒 Cage** |  |  |
+|  | **🌾 Hay** | **🔑 Key** | **🌾 Hay** |  |  |
+|  |  |  |  |  | **⚙️ Gear** |
+| **🪜 Stairs DOWN** | **🕸️ Web** | **🕷️ Spider!** | **🕸️ Web** |  | **⚙️ Gear** |
 
 **KEY:**
 
@@ -101,26 +81,17 @@ Map 3: Windmill - Upper Floor
 
 ⚙️ = Mill gears (decorative)
 
-Map 4: The Whispering Woods
+# Map 4: The Whispering Woods
 
 *Use this map for Scene 6 (Choosing which gem to find first)*
 
-  ------------ ----------- ----------- ----------- ----------- -----------
-  **💎         **🌊        **🌳 Tree** **🌳 Tree** **⛰️ Cave** **💎
-  Sapphire**   Stream**                                        Emerald**
-
-  **↖️ Left    **🌸        **🌳 Tree** **🌳 Tree** **🌸        **↗️ Middle
-  Path**       Flower**                            Flower**    Path**
-
-  **🌳 Tree**  **🌸        **⭐ Fork** **⭐ Fork** **🌸        **🌳 Tree**
-               Flower**                            Flower**    
-
-  **🌳 Tree**  **🌸        **🌳 Tree** **🌳 Tree** **🌸        **➡️ Right
-               Flower**                            Flower**    Path**
-
-  **🌳 Tree**  **🏚️ From   **🌳 Tree** **🌳 Tree** **🌅        **💎 Ruby**
-               Mill**                              Grove**     
-  ------------ ----------- ----------- ----------- ----------- -----------
+|  |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- |
+| **💎 Sapphire** | **🌊 Stream** | **🌳 Tree** | **🌳 Tree** | **⛰️ Cave** | **💎 Emerald** |
+| **↖️ Left Path** | **🌸 Flower** | **🌳 Tree** | **🌳 Tree** | **🌸 Flower** | **↗️ Middle Path** |
+| **🌳 Tree** | **🌸 Flower** | **⭐ Fork** | **⭐ Fork** | **🌸 Flower** | **🌳 Tree** |
+| **🌳 Tree** | **🌸 Flower** | **🌳 Tree** | **🌳 Tree** | **🌸 Flower** | **➡️ Right Path** |
+| **🌳 Tree** | **🏚️ From Mill** | **🌳 Tree** | **🌳 Tree** | **🌅 Grove** | **💎 Ruby** |
 
 **KEY:**
 
@@ -136,26 +107,17 @@ Map 4: The Whispering Woods
 
 **NOTE:** Players return to the fork after each gem quest
 
-Map 5: The Singing Stream
+# Map 5: The Singing Stream
 
 *Use this map for the Sapphire quest*
 
-  ----------- ----------- ------------ ----------- ----------- -----------
-  **🌳 Tree** **🌊        **🌊 Water** **🌊        **🌊        **🌳 Tree**
-              Water**                  Water**     Water**     
-
-  **🌸 Bank** **🌊        **🧜         **🪨 Rock** **🌊        **🌸 Bank**
-              Shallow**   Spirit**                 Shallow**   
-
-  **🌸 Bank** **🌊        **🌀 Deep    **🐟 Fish** **🌊        **🌸 Bank**
-              Shallow**   Pool**                   Shallow**   
-
-  **🌸 Bank** **🌊        **💎         **🌀 Deep** **🌊        **🌸 Bank**
-              Shallow**   Sapphire**               Shallow**   
-
-  **🌳 Tree** **🌸 Bank** **🌸 Bank**  **🌸 Bank** **🌸 Bank** **↙️ Back
-                                                               to Woods**
-  ----------- ----------- ------------ ----------- ----------- -----------
+|  |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- |
+| **🌳 Tree** | **🌊 Water** | **🌊 Water** | **🌊 Water** | **🌊 Water** | **🌳 Tree** |
+| **🌸 Bank** | **🌊 Shallow** | **🧜 Spirit** | **🪨 Rock** | **🌊 Shallow** | **🌸 Bank** |
+| **🌸 Bank** | **🌊 Shallow** | **🌀 Deep Pool** | **🐟 Fish** | **🌊 Shallow** | **🌸 Bank** |
+| **🌸 Bank** | **🌊 Shallow** | **💎 Sapphire** | **🌀 Deep** | **🌊 Shallow** | **🌸 Bank** |
+| **🌳 Tree** | **🌸 Bank** | **🌸 Bank** | **🌸 Bank** | **🌸 Bank** | **↙️ Back to Woods** |
 
 **KEY:**
 
@@ -169,26 +131,17 @@ Map 5: The Singing Stream
 
 🌊 = Shallow water (easy to wade)
 
-Map 6: The Crystal Cave
+# Map 6: The Crystal Cave
 
 *Use this map for the Emerald quest*
 
-  ----------- ----------- ----------- ------------- ----------- -----------
-  **💎                                              **💎        
-  Crystal**                                         Crystal**   
-
-              **💎        **⭐ Main   **🪨 Rock                 **💎
-              Crystal**   Chamber**   Elemental**               Crystal**
-
-                          **💎                                  
-                          Emerald**                             
-
-  **🌿                                              **💰        
-  Tunnel**                                          Tunnel**    
-
-                          **🚪        **↙️ Back to              
-                          ENTER**     Woods**                   
-  ----------- ----------- ----------- ------------- ----------- -----------
+|  |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- |
+| **💎 Crystal** |  |  |  | **💎 Crystal** |  |
+|  | **💎 Crystal** | **⭐ Main Chamber** | **🪨 Rock Elemental** |  | **💎 Crystal** |
+|  |  | **💎 Emerald** |  |  |  |
+| **🌿 Tunnel** |  |  |  | **💰 Tunnel** |  |
+|  |  | **🚪 ENTER** | **↙️ Back to Woods** |  |  |
 
 **KEY:**
 
@@ -204,27 +157,17 @@ Map 6: The Crystal Cave
 
 💰 = Side tunnel (crystals worth 10gp each)
 
-Map 7: Sunset Grove
+# Map 7: Sunset Grove
 
 *Use this map for the Ruby quest*
 
-  ----------- ----------- -------------- ----------- ----------- -----------
-  **🔥        **💎        **🦎           **🔥 Lava** **🌳 Golden **🌳 Golden
-  Volcano     Ruby!**     Salamander**               Tree**      Tree**
-  Top**                                                          
-
-  **🔥 Warm   **🪨 Rock** **🪨 Rock**    **🌺 Bush** **🌳 Golden **🦜
-  Lava**                                             Tree**      Phoenix**
-
-  **🌺                    **🪨 Rock**    **🌺 Bush**             **🌳 Golden
-  Flower**                                                       Tree**
-
-  **🌳 Golden **🌺        **⭐ Grove                 **🌺        **🌳 Golden
-  Tree**      Flower**    Center**                   Flower**    Tree**
-
-  **🌳 Golden **🌺                       **🚪        **↙️ Back   **🌳 Golden
-  Tree**      Flower**                   ENTER**     to Woods**  Tree**
-  ----------- ----------- -------------- ----------- ----------- -----------
+|  |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- |
+| **🔥 Volcano Top** | **💎 Ruby!** | **🦎 Salamander** | **🔥 Lava** | **🌳 Golden Tree** | **🌳 Golden Tree** |
+| **🔥 Warm Lava** | **🪨 Rock** | **🪨 Rock** | **🌺 Bush** | **🌳 Golden Tree** | **🦜 Phoenix** |
+| **🌺 Flower** |  | **🪨 Rock** | **🌺 Bush** |  | **🌳 Golden Tree** |
+| **🌳 Golden Tree** | **🌺 Flower** | **⭐ Grove Center** |  | **🌺 Flower** | **🌳 Golden Tree** |
+| **🌳 Golden Tree** | **🌺 Flower** |  | **🚪 ENTER** | **↙️ Back to Woods** | **🌳 Golden Tree** |
 
 **KEY:**
 
@@ -242,28 +185,18 @@ Map 7: Sunset Grove
 
 🌳 = Golden-red trees
 
-Map 8: The Goblin Fort
+# Map 8: The Goblin Fort
 
 *Use this map for Scenes 7-9 (Final confrontation)*
 
-  ----------- ----------- ----------- ----------- ----------- -----------
-  **🏰 Wall** **🏰 Wall** **🏰 Wall** **🏰 Wall** **🏰 Wall** **🏰 Wall**
-
-  **🏰 Wall** **👑 King   **⚔️        **⚔️        **🎪 Tent** **🏰 Wall**
-              Throne**    Goblin**    Goblin**                
-
-  **🏰 Wall** **⚔️        **⭐ Court  **⭐ Court  **⚔️        **🏰 Wall**
-              Goblin**    Yard**      Yard**      Goblin**    
-
-  **🏰 Wall** **📦                    **🔥 Fire** **📦        **🏰 Wall**
-              Boxes**                             Boxes**     
-
-  **🏰 Wall** **🏰 Wall** **🚪 GATE** **👮        **🏰 Wall** **🏰 Wall**
-                                      Guard**                 
-
-  **🕳️ Secret             **↙️ From                           
-  Tunnel**                Woods**                             
-  ----------- ----------- ----------- ----------- ----------- -----------
+|  |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- |
+| **🏰 Wall** | **🏰 Wall** | **🏰 Wall** | **🏰 Wall** | **🏰 Wall** | **🏰 Wall** |
+| **🏰 Wall** | **👑 King Throne** | **⚔️ Goblin** | **⚔️ Goblin** | **🎪 Tent** | **🏰 Wall** |
+| **🏰 Wall** | **⚔️ Goblin** | **⭐ Court Yard** | **⭐ Court Yard** | **⚔️ Goblin** | **🏰 Wall** |
+| **🏰 Wall** | **📦 Boxes** |  | **🔥 Fire** | **📦 Boxes** | **🏰 Wall** |
+| **🏰 Wall** | **🏰 Wall** | **🚪 GATE** | **👮 Guard** | **🏰 Wall** | **🏰 Wall** |
+| **🕳️ Secret Tunnel** |  | **↙️ From Woods** |  |  |  |
 
 **KEY:**
 
@@ -283,29 +216,17 @@ Map 8: The Goblin Fort
 
 📦 = Supply crates
 
-Quick Map Reference
+# Quick Map Reference
 
-  -----------------------------------------------------------------------
-  **Map \#**              **Location**            **Scene(s)**
-  ----------------------- ----------------------- -----------------------
-  Map 1                   Path to Windmill        Scene 2 (Goblins)
+| **Map #** | **Location** | **Scene(s)** |
+| --- | --- | --- |
+| Map 1 | Path to Windmill | Scene 2 (Goblins) |
+| Map 2 | Windmill Ground Floor | Scene 3 (Exploration) |
+| Map 3 | Windmill Upper Floor | Scene 4-5 (Spider & Sparkle) |
+| Map 4 | Whispering Woods | Scene 6 (Path Choice) |
+| Map 5 | Singing Stream | Sapphire Quest |
+| Map 6 | Crystal Cave | Emerald Quest |
+| Map 7 | Sunset Grove | Ruby Quest |
+| Map 8 | Goblin Fort | Scene 7-9 (Final Battle) |
 
-  Map 2                   Windmill Ground Floor   Scene 3 (Exploration)
-
-  Map 3                   Windmill Upper Floor    Scene 4-5 (Spider &
-                                                  Sparkle)
-
-  Map 4                   Whispering Woods        Scene 6 (Path Choice)
-
-  Map 5                   Singing Stream          Sapphire Quest
-
-  Map 6                   Crystal Cave            Emerald Quest
-
-  Map 7                   Sunset Grove            Ruby Quest
-
-  Map 8                   Goblin Fort             Scene 7-9 (Final
-                                                  Battle)
-  -----------------------------------------------------------------------
-
-*Tip: Print these maps and use coins, dice, or small toys as player
-tokens!*
+*Tip: Print these maps and use coins, dice, or small toys as player tokens!*
