@@ -9,11 +9,11 @@ Welcome to the Dice and Destiny documentation. All game materials are available 
 - **[Beginners Rulebook](beginners-rulebook.md)** - Complete rules for gameplay
 
 ### Character Creation & Reference
-- **[Character Art Guide](character-art-guide.md)** - Races, classes, and character descriptions with artwork references
-- **[Character Sheets](character-sheets.md)** - Blank character sheet template
+- **[Character Art Guide](character-art-guide.md)** - Races, classes, and character descriptions
+- **[Character Sheets](character-sheets.md)** - Character sheet template and format
 
 ### Adventures
-- **[The Dragons Friends Adventure](adventure-the-dragons-friends.md)** - First campaign module
+- **[Adventure: The Dragons Friends](adventure-the-dragons-friends.md)** - First campaign module
 - **[Game Maps](game-maps.md)** - Tactical maps and encounter layouts
 
 ## File Organization
@@ -37,10 +37,10 @@ docs/
 - **Game Masters**: Review the Beginners Rulebook, then prepare the adventure using the Dragons Friends module and maps
 - **Character Creation**: Use the Character Sheets template along with the Character Art Guide
 
-## Original Files
+## About These Files
 
-The original Word documents (.docx files) are still available in:
-- `Rules_and_Guides/` - Rulebooks and guides
-- `Stories/The_Dragons_Friends/` - Adventure materials
+The documentation has been converted from Word documents (.docx) to Markdown for easier access and version control. The original .docx files remain available in their original directories if you prefer to work with them directly.
 
-Choose whichever format works best for you!
+Choose whichever format works best for you:
+- **Markdown files** in the `docs/` directory - Best for reading online and version control
+- **Word documents** in `Rules_and_Guides/` and `Stories/The_Dragons_Friends/` - Best for editing and printing

@@ -16,21 +16,21 @@ Dice and Destiny is a complete TRPG system designed for fantasy gameplay. It inc
 
 ### For New Players
 
-Start with **DD_Getting_Started_Guide.docx** in the `Rules_and_Guides/` directory. This guide will introduce you to:
+Start with **Getting_Started_Guide.docx** in the `Rules_and_Guides/` directory. This guide will introduce you to:
 - Core concepts and how to play
 - Character creation process
 - Basic rules and mechanics
 
 ### For Game Masters (DMs)
 
-1. Read **DD_Beginners_Rulebook.docx** for complete rules
-2. Review **DD_Game_Maps.docx** in `Stories/The_Dragons_Friends/` for encounter layouts
-3. Use **DD_Adventure_The_Dragons_Friends.docx** to run your first campaign
-4. Print or digitally distribute **DD_Character_Sheets.docx** to your players
+1. Read **Beginners_Rulebook.docx** for complete rules
+2. Review **Game_Maps.docx** in `Stories/The_Dragons_Friends/` for encounter layouts
+3. Use **Adventure_The_Dragons_Friends.docx** to run your first campaign
+4. Print or digitally distribute **Character_Sheets.docx** to your players
 
 ### For Content Creators
 
-Refer to **DD_Character_Art_Guide.docx** if you're expanding the game with new content or creating additional character artwork.
+Refer to **Character_Art_Guide.docx** if you're expanding the game with new content or creating additional character artwork.
 
 ## Project Structure
 
@@ -48,15 +48,15 @@ Dice-and-Destiny/
 │   └── Stories/                  # Adventure-specific artwork
 │
 ├── Rules_and_Guides/
-│   ├── DD_Beginners_Rulebook.docx
-│   ├── DD_Character_Art_Guide.docx
-│   ├── DD_Character_Sheets.docx
-│   └── DD_Getting_Started_Guide.docx
+│   ├── Beginners_Rulebook.docx
+│   ├── Character_Art_Guide.docx
+│   ├── Character_Sheets.docx
+│   └── Getting_Started_Guide.docx
 │
 └── Stories/
     └── The_Dragons_Friends/      # First campaign module
-        ├── DD_Adventure_The_Dragons_Friends.docx
-        └── DD_Game_Maps.docx
+        ├── Adventure_The_Dragons_Friends.docx
+        └── Game_Maps.docx
 ```
 
 ## Game System
@@ -82,22 +82,22 @@ The `Artwork/Characters/` directory contains 72 unique character portraits cover
 
 ## Documents Guide
 
-### DD_Beginners_Rulebook.docx
+### Beginners_Rulebook.docx
 The core rules document containing all mechanics needed to play Dice and Destiny. Covers character creation, combat, skills, spellcasting, and core gameplay loops.
 
-### DD_Getting_Started_Guide.docx
+### Getting_Started_Guide.docx
 An introductory guide for new players. Perfect for first-time TRPG players, covering basic concepts before diving into full rules.
 
-### DD_Character_Art_Guide.docx
+### Character_Art_Guide.docx
 Reference guide for character creation, including descriptions of races and classes with visual guides using the character artwork.
 
-### DD_Character_Sheets.docx
+### Character_Sheets.docx
 Blank character sheets ready to print or fill digitally. One sheet per character with sections for attributes, skills, equipment, and notes.
 
 ### The_Dragons_Friends Campaign
 Located in `Stories/The_Dragons_Friends/`:
-- **DD_Adventure_The_Dragons_Friends.docx**: Complete adventure module with story, encounters, and NPCs
-- **DD_Game_Maps.docx**: Tactical maps, town layouts, and dungeon designs
+- **Adventure_The_Dragons_Friends.docx**: Complete adventure module with story, encounters, and NPCs
+- **Game_Maps.docx**: Tactical maps, town layouts, and dungeon designs
 
 ## How to Use This Repository
 
@@ -109,7 +109,7 @@ Located in `Stories/The_Dragons_Friends/`:
 
 ### Running an Adventure
 1. Read **The Dragons Friends** adventure module
-2. Prepare maps from **DD_Game_Maps.docx**
+2. Prepare maps from **Game_Maps.docx**
 3. Review artwork in `Artwork/` for atmosphere and scene descriptions
 4. Prepare NPCs, encounters, and story beats
 
