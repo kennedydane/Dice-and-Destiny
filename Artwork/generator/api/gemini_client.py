@@ -1,13 +1,11 @@
 """
-Gemini API Client
+Prompt Generator Client
 
-Handles communication with Google's Gemini API for image generation.
-Supports fallback to prompt generation if API is unavailable.
+Handles generation and saving of prompts for character and adventure artwork.
+Prompts can be used with any AI image generation service.
 """
 
-import os
 import logging
-from typing import Optional, Tuple
 from pathlib import Path
 
 logger = logging.getLogger(__name__)
@@ -15,50 +13,20 @@ logger = logging.getLogger(__name__)
 
 class GeminiClient:
     """
-    Client for Google Gemini API image generation.
+    Prompt generation and management client.
 
-    Supports both direct image generation (if available) and prompt generation
-    for manual use with Gemini UI or other image generators.
+    Generates and saves prompts for character and adventure artwork that can be
+    used with any AI image generation service (Gemini, Midjourney, Stable Diffusion, etc).
     """
 
-    def __init__(self, api_key: Optional[str] = None):
+    def __init__(self, api_key=None):
         """
-        Initialize Gemini client.
+        Initialize prompt client.
 
         Args:
-            api_key: Google Gemini API key (defaults to GEMINI_API_KEY env var)
-
-        Raises:
-            ValueError: If no API key is provided or found in environment
+            api_key: Optional API key (not required for prompt generation)
         """
-        self.api_key = api_key or os.getenv("GEMINI_API_KEY")
-
-        if not self.api_key:
-            logger.warning(
-                "GEMINI_API_KEY not found. Will generate prompts only (no image generation)."
-            )
-            self.available = False
-        else:
-            self.available = self._test_connection()
-
-    def _test_connection(self) -> bool:
-        """
-        Test connection to Gemini API.
-
-        Returns:
-            True if connection successful, False otherwise
-        """
-        try:
-            import google.generativeai as genai
-
-            genai.configure(api_key=self.api_key)
-            # Try to get model list to verify connection
-            _ = genai.list_models()
-            logger.info("Gemini API connection successful")
-            return True
-        except Exception as e:
-            logger.warning(f"Gemini API connection failed: {e}")
-            return False
+        pass
 
 
     def save_prompt_for_manual_generation(
@@ -95,19 +63,11 @@ class GeminiClient:
             logger.error(f"Failed to save prompt: {e}")
             return False
 
-    def is_available(self) -> bool:
-        """Check if Gemini API is available."""
-        return self.available
-
     def get_status(self) -> dict:
-        """Get API status information."""
+        """Get client status information."""
         return {
-            "available": self.available,
-            "api_key_configured": bool(self.api_key),
-            "fallback_mode": not self.available,
-            "message": (
-                "Gemini API ready for image generation"
-                if self.available
-                else "Using prompt generation mode (API unavailable)"
-            ),
+            "available": True,
+            "api_key_configured": False,
+            "fallback_mode": False,
+            "message": "Prompt generation mode (ready to generate prompts for any image generator)",
         }
