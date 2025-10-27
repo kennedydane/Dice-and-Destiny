@@ -147,6 +147,26 @@ Wild and strong! They get angry in battle and become super powerful!
 
 **Special Power:** Can RAGE! Take half damage for 3 turns, once per adventure
 
+**Paladin**
+
+Holy warriors blessed by divine power! They protect their friends and shine with holy light.
+
+**Weapon:** Sword & Holy Shield (does 1d8 damage)
+
+**Hit Points:** 11
+
+**Special Power:** Divine Protection - Once per battle, can protect themselves or a friend from one attack AND force the attacker to target the Paladin next turn instead
+
+**Ranger**
+
+Expert archers and wilderness trackers! They're skilled hunters who notice everything in nature.
+
+**Weapon:** Bow (does 1d8 damage)
+
+**Hit Points:** 9
+
+**Special Power:** Can track enemies - notice hidden enemies and their location once per adventure
+
 ## Step 3: Write Down Your Hero's Name
 
 Give your hero a cool name! It can be anything you want. Here are some ideas:

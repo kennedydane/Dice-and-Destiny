@@ -7,7 +7,7 @@ A custom tabletop role-playing game (TRPG) system featuring comprehensive rules,
 Dice and Destiny is a complete TRPG system designed for fantasy gameplay. It includes:
 
 - **Core Rules**: A beginner-friendly rulebook with mechanics for character creation and gameplay
-- **Character System**: 6 playable races and 6 character classes with 72 unique character portraits
+- **Character System**: 6 playable races and 8 character classes with 72 unique character portraits
 - **Game Materials**: Character sheets, guides, and reference materials for players
 - **Adventures**: Modular campaign modules including maps and encounter design
 - **Artwork**: Professional character portraits and scene illustrations
@@ -74,6 +74,8 @@ Dice-and-Destiny/
 - Barbarian
 - Cleric
 - Druid
+- Paladin
+- Ranger
 - Rogue
 - Warrior
 - Wizard

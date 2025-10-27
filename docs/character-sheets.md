@@ -141,3 +141,27 @@
 | --- |
 | **MY ITEMS & TREASURES:**  \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_  \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_  \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_  \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_  \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ |
 | **MY HERO'S STORY:**  \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_  \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_  \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_  \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ |
+
+**\*\*PALADIN CHARACTER SHEET\*\***
+
+Hero's Name: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ Species: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+CLASS: PALADIN
+
+HIT POINTS: 11 WEAPON: Sword & Holy Shield DAMAGE: 1d8
+
+SPECIAL POWER: Divine Protection - Once per battle, can protect yourself or a friend from one attack AND force the attacker to target you next turn!
+
+About Paladins: Holy warriors blessed by divine power! They shine with light and protect their friends!
+
+**\*\*RANGER CHARACTER SHEET\*\***
+
+Hero's Name: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ Species: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+CLASS: RANGER
+
+HIT POINTS: 9 WEAPON: Bow DAMAGE: 1d8
+
+SPECIAL POWER: Can track enemies - notice hidden enemies and their location once per adventure!
+
+About Rangers: Expert archers and wilderness trackers! They're skilled hunters who notice everything in nature!

@@ -44,6 +44,8 @@ Here are detailed descriptions of each class to help you visualize and draw your
 | --- |
 | **🪓 BARBARIAN 🪓**  **Overall Look:**  Wild and powerful! Barbarians are big, strong, and fierce! But they're good-hearted heroes.  **Clothing:**   * Fur vest or animal skin armor * Tribal patterns or tattoos (can be drawn on arms) * Leather pants or kilt * Heavy boots with fur trim * War paint on face (optional)   **Weapons:**   * HUGE double-bladed axe (bigger than a normal axe!) * Club or hammer (backup weapon)   **Face & Expression:**  Fierce but friendly! Big smile when happy. Looks tough but has a soft heart. Wild, messy hair!  **Cool Details to Add:**   * Red glow in eyes when RAGING * Trophies from adventures (teeth, claws on necklace) * Muscles! Show they're super strong * Battle scars (shows they've been in fights)   **Color Suggestions:**  Brown fur and leather, red or orange war paint, silver axe blade, dark messy hair |
 
+## THE PALADIN
+
 # Species & Ancestries
 
 Each species has special features! Mix and match with any class above.
@@ -84,3 +86,5 @@ On your character sheet, write a little story about your hero. Where are they fr
 *The most important thing is that YOU love how they look!*
 
 **🎨 HAPPY DRAWING! 🎨**
+
+## THE RANGER

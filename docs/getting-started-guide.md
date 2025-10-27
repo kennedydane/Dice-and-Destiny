@@ -91,6 +91,8 @@ Briefly describe each class using the character sheets. Let them pick what sound
 * **Rogue:** "Sneaky and quick! Finds secrets!"
 * **Druid:** "Talks to animals! Loves nature!"
 * **Barbarian:** "Super strong! Gets REALLY powerful when angry!"
+* **Paladin:** "Holy warrior! Shines with divine light and protects everyone!"
+* **Ranger:** "Expert archer! Can track enemies and hunt like a pro!"
 
 **2. Choose a Species (3 minutes)**
 
