@@ -195,7 +195,7 @@ def character(race: str, class_name: str, gender: str, style: str, edit: bool):
         ["fantasy", "photorealistic", "cartoon", "watercolor", "concept_art", "oil_painting"],
         case_sensitive=False,
     ),
-    default="fantasy",
+    default=None,
     help="Art style for the scene",
 )
 @click.option(
@@ -298,6 +298,31 @@ def adventure(story: Optional[str], act: Optional[int], scene: Optional[str], np
                 fg="red"
             )
             sys.exit(1)
+
+        # Prompt for style if not provided
+        if not style:
+            click.echo("\nAvailable art styles:")
+            styles = ["fantasy", "photorealistic", "cartoon", "watercolor", "concept_art", "oil_painting"]
+            for i, s in enumerate(styles, 1):
+                click.echo(f"  {i}. {s}")
+
+            style_selection = click.prompt("Select art style (enter number or name)", type=str)
+
+            # Try to interpret as index first
+            try:
+                index = int(style_selection) - 1
+                if 0 <= index < len(styles):
+                    style = styles[index]
+                else:
+                    click.secho(f"✗ Invalid index: {style_selection}", fg="red")
+                    sys.exit(1)
+            except ValueError:
+                # Not a number, try as name
+                if style_selection.lower() in [s.lower() for s in styles]:
+                    style = next(s for s in styles if s.lower() == style_selection.lower())
+                else:
+                    click.secho(f"✗ Unknown style: {style_selection}", fg="red")
+                    sys.exit(1)
 
         # Generate the prompt
         prompt = generator.generate_prompt(story, act, scene, npc, style)
