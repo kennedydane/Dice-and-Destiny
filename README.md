@@ -37,7 +37,6 @@ Refer to **Character_Art_Guide.docx** if you're expanding the game with new cont
 ```
 Dice-and-Destiny/
 ├── Artwork/
-│   ├── Act 1/                    # Scene artwork for campaign progression
 │   ├── Characters/               # Character portraits organized by race
 │   │   ├── Dwarf/
 │   │   ├── Elf/
@@ -45,7 +44,9 @@ Dice-and-Destiny/
 │   │   ├── Half Elf/
 │   │   ├── Halfling/
 │   │   └── Human/
-│   └── Stories/                  # Adventure-specific artwork
+│   └── Stories/                  # Campaign-specific artwork
+│       └── The_Dragons_Friends/
+│           └── Act 1/            # Scene artwork organized by act
 │
 ├── Rules_and_Guides/
 │   ├── Beginners_Rulebook.docx
