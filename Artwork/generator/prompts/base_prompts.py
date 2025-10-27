@@ -8,30 +8,106 @@ The style guidelines are based on specifications from Rules_and_Guides/character
 """
 
 # ============================================================================
-# ART STYLE GUIDELINES
+# ART STYLES DICTIONARY
 # ============================================================================
-# These guidelines are prepended to all image generation prompts to ensure
-# visual consistency across all generated artwork.
+# Defines different art styles with their own visual guidelines and specifications
 
-ART_STYLE_GUIDELINES = """
+ART_STYLES = {
+    "fantasy": {
+        "name": "Fantasy Illustration",
+        "base_style": "Fantasy illustration style with digital painting aesthetic",
+        "character_style": "Professional fantasy character design with expressive features and magical elements",
+        "color_palette": "Warm, rich color palette with natural lighting",
+        "details": "High detail, painterly texture, professional finishing with dynamic lighting",
+        "background": "Fantasy-themed backgrounds that complement the character or scene",
+    },
+    "photorealistic": {
+        "name": "Photorealistic",
+        "base_style": "Photorealistic style with accurate lighting, proportions, and material details",
+        "character_style": "Highly realistic character portraiture with accurate anatomy and skin tones",
+        "color_palette": "Natural, realistic color palette with accurate lighting and shadows",
+        "details": "Ultra high detail with photographic realism, accurate textures, and professional photography quality",
+        "background": "Realistic, detailed backgrounds with proper perspective and atmospheric effects",
+    },
+    "cartoon": {
+        "name": "Cartoon Style",
+        "base_style": "Cartoon and comic book illustration style with bold, expressive lines",
+        "character_style": "Cartoon character design with exaggerated features, expressive expressions, and dynamic poses",
+        "color_palette": "Bright, vibrant colors with bold outlines and clear color separation",
+        "details": "Bold lines, simplified forms, high contrast, expressive character design suitable for all ages",
+        "background": "Stylized, simplified backgrounds that don't distract from the character",
+    },
+    "watercolor": {
+        "name": "Watercolor",
+        "base_style": "Soft watercolor painting style with fluid, translucent colors",
+        "character_style": "Watercolor character painting with soft edges and flowing brushwork",
+        "color_palette": "Soft, muted colors with natural color blending and watercolor paper texture",
+        "details": "Delicate, artistic details with soft shadows, translucent layers, and painterly brushstrokes",
+        "background": "Soft, atmospheric watercolor backgrounds with gradual color transitions",
+    },
+    "concept_art": {
+        "name": "Concept Art",
+        "base_style": "Bold concept art style with strong visual storytelling and stylized proportions",
+        "character_style": "Stylized character design with emphasis on silhouette, pose, and personality",
+        "color_palette": "Dramatic color choices with strong value contrast and theatrical lighting",
+        "details": "Expressive brushwork, dynamic compositions, bold design choices, suitable for game/film concept art",
+        "background": "Dramatic, integrated backgrounds that tell a visual story",
+    },
+    "oil_painting": {
+        "name": "Oil Painting",
+        "base_style": "Classical oil painting style with rich colors and textured brushwork",
+        "character_style": "Portrait-style oil painting with classical proportions and expressive character work",
+        "color_palette": "Rich, warm colors with sophisticated color mixing and depth",
+        "details": "Thick brushstrokes, visible paint texture, classical lighting techniques, museum-quality finish",
+        "background": "Classical-style backgrounds with proper perspective and atmospheric depth",
+    },
+}
+
+
+def get_style_guidelines(style: str = "fantasy") -> str:
+    """
+    Get style guidelines for a specific art style.
+
+    Args:
+        style: Art style key (fantasy, photorealistic, cartoon, watercolor, concept_art, oil_painting)
+
+    Returns:
+        Formatted style guidelines string
+
+    Raises:
+        ValueError: If style is not recognized
+    """
+    if style.lower() not in ART_STYLES:
+        raise ValueError(
+            f"Unknown art style: {style}. Available styles: {', '.join(ART_STYLES.keys())}"
+        )
+
+    style_info = ART_STYLES[style.lower()]
+
+    guidelines = f"""
 STYLE GUIDELINES FOR ALL GENERATED ARTWORK:
-- Fantasy illustration style with digital painting aesthetic
-- Professional character design with expressive features
-- Warm, rich color palette with natural lighting
+- {style_info['base_style']}
+- {style_info['character_style']}
+- {style_info['color_palette']}
 - High-quality, detailed artwork suitable for both digital display and print
 - 1:1 square aspect ratio (portrait format)
 - PNG format with transparency where appropriate
-- High detail, painterly texture, professional finishing
+- {style_info['details']}
 
 For all characters:
 - Full-body portrait, character centered and prominent
-- Simple, non-distracting background that complements the character
+- {style_info['background']}
 - Detailed armor, robes, and accessories as specified
 - Clear facial expression showing personality and emotion
-- Dynamic lighting with warm highlights and soft shadows for depth
+- Professional composition with appropriate lighting for the chosen style
 - Maintain consistent art style - all characters should feel part of the same game world
 - Gender expression: Male characters should have masculine features, female characters feminine features
 """
+    return guidelines.strip()
+
+
+# Default style guidelines for backward compatibility
+ART_STYLE_GUIDELINES = get_style_guidelines("fantasy")
 
 # ============================================================================
 # CHARACTER RACE DESCRIPTIONS
@@ -199,7 +275,7 @@ Generate a high-quality fantasy scene that sets the mood for this adventure loca
 # UTILITIES
 # ============================================================================
 
-def build_character_prompt(race: str, class_name: str, gender: str = "a") -> str:
+def build_character_prompt(race: str, class_name: str, gender: str = "a", style: str = "fantasy") -> str:
     """
     Build a complete character art prompt with style guidelines.
 
@@ -207,6 +283,7 @@ def build_character_prompt(race: str, class_name: str, gender: str = "a") -> str
         race: Character race (human, elf, dwarf, gnome, half_elf, halfling)
         class_name: Character class (warrior, wizard, cleric, rogue, druid, barbarian, paladin, ranger)
         gender: Character gender (male, female, neutral) - defaults to "a" for art variety
+        style: Art style (fantasy, photorealistic, cartoon, watercolor, concept_art, oil_painting)
 
     Returns:
         Complete formatted prompt for image generation
@@ -241,7 +318,7 @@ def build_character_prompt(race: str, class_name: str, gender: str = "a") -> str
 """
 
     prompt = CHARACTER_PROMPT_TEMPLATE.format(
-        style_guidelines=ART_STYLE_GUIDELINES,
+        style_guidelines=get_style_guidelines(style),
         gender=gender,
         race=race.title(),
         class_name=class_name.title(),
@@ -252,7 +329,7 @@ def build_character_prompt(race: str, class_name: str, gender: str = "a") -> str
     return prompt
 
 
-def build_adventure_prompt(scene_description: str, story_name: str = "Unknown Story", act: int = 1, scene_name: str = "Scene") -> str:
+def build_adventure_prompt(scene_description: str, story_name: str = "Unknown Story", act: int = 1, scene_name: str = "Scene", style: str = "fantasy") -> str:
     """
     Build a complete adventure scene prompt with style guidelines.
 
@@ -261,12 +338,13 @@ def build_adventure_prompt(scene_description: str, story_name: str = "Unknown St
         story_name: Name of the adventure story
         act: Act number
         scene_name: Scene name or identifier
+        style: Art style (fantasy, photorealistic, cartoon, watercolor, concept_art, oil_painting)
 
     Returns:
         Complete formatted prompt for image generation
     """
     prompt = ADVENTURE_PROMPT_TEMPLATE.format(
-        style_guidelines=ART_STYLE_GUIDELINES,
+        style_guidelines=get_style_guidelines(style),
         scene_description=scene_description,
         story_name=story_name,
         act=act,

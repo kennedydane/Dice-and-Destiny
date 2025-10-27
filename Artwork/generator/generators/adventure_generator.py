@@ -10,13 +10,15 @@ import re
 from pathlib import Path
 from typing import Optional
 from markitdown import MarkItDown
-from ..prompts import build_adventure_prompt
+from ..prompts import build_adventure_prompt, ART_STYLES
 
 logger = logging.getLogger(__name__)
 
 
 class AdventureGenerator:
     """Generates prompts for adventure scene artwork based on story structure."""
+
+    VALID_STYLES = list(ART_STYLES.keys())
 
     def __init__(self, stories_path: str = None):
         """
@@ -247,8 +249,29 @@ class AdventureGenerator:
         # Fallback to generic description
         return f"Scene from {story}, Act {act}: {scene.replace('_', ' ')}"
 
+    def validate_style(self, style: str) -> str:
+        """
+        Validate and normalize art style name.
+
+        Args:
+            style: Art style name (case-insensitive)
+
+        Returns:
+            Normalized style name
+
+        Raises:
+            ValueError: If style is not valid
+        """
+        style_lower = style.lower().strip()
+        if style_lower in self.VALID_STYLES:
+            return style_lower
+
+        raise ValueError(
+            f"Invalid style: {style}. Valid styles are: {', '.join(sorted(self.VALID_STYLES))}"
+        )
+
     def generate_prompt(
-        self, story: str, act: int, scene: str, npc_type: Optional[str] = None
+        self, story: str, act: int, scene: str, npc_type: Optional[str] = None, style: str = "fantasy"
     ) -> str:
         """
         Generate an adventure scene art prompt.
@@ -258,6 +281,7 @@ class AdventureGenerator:
             act: Act number
             scene: Scene name/identifier
             npc_type: Optional NPC type to include in scene (e.g., "merchant", "guard")
+            style: Art style (default: fantasy)
 
         Returns:
             Complete prompt for image generation
@@ -267,6 +291,7 @@ class AdventureGenerator:
         """
         # Validate inputs
         scene_details = self.get_scene_details(story, act, scene)
+        validated_style = self.validate_style(style)
 
         scene_description = scene_details["description"]
 
@@ -279,7 +304,8 @@ class AdventureGenerator:
             scene_description=scene_description,
             story_name=story.replace("_", " "),
             act=act,
-            scene_name=scene.replace("_", " ")
+            scene_name=scene.replace("_", " "),
+            style=validated_style
         )
 
         return prompt

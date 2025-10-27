@@ -1,6 +1,7 @@
 """Prompt generation and management"""
 
 from .base_prompts import (
+    ART_STYLES,
     ART_STYLE_GUIDELINES,
     RACE_DESCRIPTIONS,
     CLASS_DESCRIPTIONS,
@@ -11,6 +12,7 @@ from .base_prompts import (
 )
 
 __all__ = [
+    "ART_STYLES",
     "ART_STYLE_GUIDELINES",
     "RACE_DESCRIPTIONS",
     "CLASS_DESCRIPTIONS",

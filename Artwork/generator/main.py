@@ -87,11 +87,20 @@ def cli():
     help="Character gender",
 )
 @click.option(
+    "--style",
+    type=click.Choice(
+        ["fantasy", "photorealistic", "cartoon", "watercolor", "concept_art", "oil_painting"],
+        case_sensitive=False,
+    ),
+    prompt="Select art style",
+    help="Art style for the character",
+)
+@click.option(
     "--edit",
     is_flag=True,
     help="Edit the prompt before generation",
 )
-def character(race: str, class_name: str, gender: str, edit: bool):
+def character(race: str, class_name: str, gender: str, style: str, edit: bool):
     """Generate character art prompt.
 
     Specify race and class, optionally customize the prompt, and generate
@@ -102,7 +111,7 @@ def character(race: str, class_name: str, gender: str, edit: bool):
         generator = CharacterGenerator()
 
         # Generate the prompt
-        prompt = generator.generate_prompt(race, class_name, gender)
+        prompt = generator.generate_prompt(race, class_name, gender, style)
 
         click.echo("\n" + "=" * 80)
         click.echo(f"CHARACTER ART PROMPT: {race.title()} {class_name.title()} ({gender.title()})")
@@ -181,11 +190,20 @@ def character(race: str, class_name: str, gender: str, edit: bool):
     help="NPC type to include (e.g., 'merchant', 'guard')",
 )
 @click.option(
+    "--style",
+    type=click.Choice(
+        ["fantasy", "photorealistic", "cartoon", "watercolor", "concept_art", "oil_painting"],
+        case_sensitive=False,
+    ),
+    default="fantasy",
+    help="Art style for the scene",
+)
+@click.option(
     "--edit",
     is_flag=True,
     help="Edit the prompt before generation",
 )
-def adventure(story: Optional[str], act: Optional[int], scene: Optional[str], npc: Optional[str], edit: bool):
+def adventure(story: Optional[str], act: Optional[int], scene: Optional[str], npc: Optional[str], style: str, edit: bool):
     """Generate adventure scene art prompt.
 
     Specify story, act, and scene to generate an artwork prompt for adventure locations.
@@ -282,7 +300,7 @@ def adventure(story: Optional[str], act: Optional[int], scene: Optional[str], np
             sys.exit(1)
 
         # Generate the prompt
-        prompt = generator.generate_prompt(story, act, scene, npc)
+        prompt = generator.generate_prompt(story, act, scene, npc, style)
 
         click.echo("\n" + "=" * 80)
         click.echo(f"ADVENTURE SCENE PROMPT: {story} - Act {act} - {scene}")

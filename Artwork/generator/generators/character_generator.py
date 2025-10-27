@@ -6,7 +6,7 @@ Handles generation of character art prompts based on race, class, and gender sel
 
 import re
 from typing import Optional
-from ..prompts import build_character_prompt, RACE_DESCRIPTIONS, CLASS_DESCRIPTIONS
+from ..prompts import build_character_prompt, RACE_DESCRIPTIONS, CLASS_DESCRIPTIONS, ART_STYLES
 
 
 class CharacterGenerator:
@@ -15,6 +15,7 @@ class CharacterGenerator:
     VALID_RACES = list(RACE_DESCRIPTIONS.keys())
     VALID_CLASSES = list(CLASS_DESCRIPTIONS.keys())
     VALID_GENDERS = ["male", "female", "neutral"]
+    VALID_STYLES = list(ART_STYLES.keys())
 
     def __init__(self):
         """Initialize the character generator."""
@@ -108,8 +109,29 @@ class CharacterGenerator:
                 f"Invalid gender: {gender}. Valid options are: male, female, neutral"
             )
 
+    def validate_style(self, style: str) -> str:
+        """
+        Validate and normalize art style name.
+
+        Args:
+            style: Art style name (case-insensitive)
+
+        Returns:
+            Normalized style name
+
+        Raises:
+            ValueError: If style is not valid
+        """
+        style_lower = style.lower().strip()
+        if style_lower in self.VALID_STYLES:
+            return style_lower
+
+        raise ValueError(
+            f"Invalid style: {style}. Valid styles are: {', '.join(sorted(self.VALID_STYLES))}"
+        )
+
     def generate_prompt(
-        self, race: str, class_name: str, gender: str = "neutral"
+        self, race: str, class_name: str, gender: str = "neutral", style: str = "fantasy"
     ) -> str:
         """
         Generate a character art prompt.
@@ -118,6 +140,7 @@ class CharacterGenerator:
             race: Character race
             class_name: Character class
             gender: Character gender (default: neutral)
+            style: Art style (default: fantasy)
 
         Returns:
             Complete prompt for image generation
@@ -129,12 +152,14 @@ class CharacterGenerator:
         validated_race = self.validate_race(race)
         validated_class = self.validate_class(class_name)
         validated_gender = self.validate_gender(gender)
+        validated_style = self.validate_style(style)
 
         # Build the prompt
         prompt = build_character_prompt(
             race=validated_race,
             class_name=validated_class,
             gender=validated_gender,
+            style=validated_style,
         )
 
         return prompt
@@ -176,3 +201,7 @@ class CharacterGenerator:
     def list_valid_genders(self) -> list[str]:
         """Get list of valid genders."""
         return self.VALID_GENDERS
+
+    def list_valid_styles(self) -> list[str]:
+        """Get list of valid art styles."""
+        return sorted(self.VALID_STYLES)
