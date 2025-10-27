@@ -252,14 +252,15 @@ ADVENTURE_PROMPT_TEMPLATE = """
 
 Create a fantasy scene illustration for a tabletop RPG adventure:
 
-SCENE DESCRIPTION:
-{scene_description}
-
-{npc_section}IMPORTANT REQUIREMENTS:
+{npc_section}
+IMPORTANT REQUIREMENTS:
 - NO adventurer player characters in the scene
 - Focus on the environment, NPCs, and atmosphere
 - Include any mentioned NPCs, creatures, or key objects
 - Create an immersive, magical atmosphere
+
+SCENE DESCRIPTION:
+{scene_description}
 
 IMAGE TEXT:
 - At the top of the image, include the text: "{story_name}"
