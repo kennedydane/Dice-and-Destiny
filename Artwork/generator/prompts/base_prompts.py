@@ -258,7 +258,6 @@ SCENE DESCRIPTION:
 IMPORTANT REQUIREMENTS:
 - NO adventurer player characters in the scene
 - Focus on the environment, NPCs, and atmosphere
-- Suitable for a fantasy adventure for young players (ages 5-8)
 - Include any mentioned NPCs, creatures, or key objects
 - Create an immersive, magical atmosphere
 
