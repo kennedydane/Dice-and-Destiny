@@ -44,9 +44,15 @@ Dice-and-Destiny/
 │   │   ├── Half Elf/
 │   │   ├── Halfling/
 │   │   └── Human/
-│   └── Stories/                  # Campaign-specific artwork
-│       └── The_Dragons_Friends/
-│           └── Act 1/            # Scene artwork organized by act
+│   ├── Stories/                  # Campaign-specific artwork
+│   │   └── The_Dragons_Friends/
+│   │       └── Act 1/            # Scene artwork organized by act
+│   ├── generator/                # Artwork prompt generator CLI
+│   │   ├── main.py               # CLI entry point
+│   │   ├── generators/           # Character and adventure generators
+│   │   ├── prompts/              # Prompt templates and NPC descriptions
+│   │   └── pyproject.toml        # Python package configuration
+│   └── generated/                # Output prompts for image generation
 │
 ├── Rules_and_Guides/
 │   ├── rulebook.js               # Source file for Beginners Rulebook
@@ -58,12 +64,16 @@ Dice-and-Destiny/
 │   ├── getting_started.js        # Source file for Getting Started Guide
 │   └── Getting_Started_Guide.docx # Generated from getting_started.js
 │
-└── Stories/
-    └── The_Dragons_Friends/      # First campaign module
-        ├── adventure.js          # Source file for adventure
-        ├── Adventure_The_Dragons_Friends.docx # Generated from adventure.js
-        ├── maps.js               # Source file for maps
-        └── Game_Maps.docx        # Generated from maps.js
+├── Stories/
+│   ├── The_Dragons_Friends/      # First campaign module
+│   │   ├── adventure.js          # Source file for adventure
+│   │   ├── Adventure_The_Dragons_Friends.docx # Generated from adventure.js
+│   │   ├── maps.js               # Source file for maps
+│   │   └── Game_Maps.docx        # Generated from maps.js
+│   ├── STORY_CREATION_GUIDE.md   # Guide for creating new adventures
+│   └── STORY_TEMPLATE.js         # Starter template for new adventures
+│
+└── Makefile                      # Automation for document generation
 ```
 
 ## Game System
@@ -107,6 +117,64 @@ Blank character sheets ready to print or fill digitally. One sheet per character
 Located in `Stories/The_Dragons_Friends/`:
 - **Adventure_The_Dragons_Friends.docx**: Complete adventure module with story, encounters, and NPCs
 - **Game_Maps.docx**: Tactical maps, town layouts, and dungeon designs
+
+## Artwork Generator
+
+The project includes a Python CLI tool for generating AI image prompts for character artwork and adventure scenes.
+
+### Features
+
+- **Character Prompt Generation**: Generate detailed prompts for character artwork based on race, class, gender, and art style
+- **Adventure Scene Prompts**: Generate prompts for scene artwork that include NPC descriptions for visual consistency
+- **Multiple Art Styles**: Choose from Fantasy, Photorealistic, Cartoon, Watercolor, Concept Art, or Oil Painting
+- **NPC Consistency**: Adventure prompts automatically include NPC visual descriptions to ensure consistent character rendering across scenes
+
+### Setup
+
+```bash
+# Install the generator as a workspace package
+uv add Artwork/generator
+
+# Verify installation
+generate-image --help
+```
+
+### Usage
+
+#### Generate Character Artwork Prompt:
+```bash
+generate-image character --race elf --class wizard --gender female --style photorealistic
+```
+
+#### Generate Adventure Scene Prompt:
+```bash
+generate-image adventure --story "The_Dragons_Friends" --act 1 --scene "1: The Village Square" --style fantasy
+```
+
+Interactive mode (prompts for all options):
+```bash
+generate-image character
+generate-image adventure
+```
+
+### Generated Prompts
+
+Prompts are saved to `Artwork/generated/` and include:
+- Style guidelines customized for the chosen art style
+- NPC descriptions for visual consistency (adventures only)
+- Scene details and requirements
+- Image text specifications
+- Ready to use with Gemini, Midjourney, Stable Diffusion, or other AI image generators
+
+### Adventure Structure
+
+Adventures are parsed directly from the `.docx` files, which include:
+- **Acts**: Major story sections (Act 1, Act 2, etc.)
+- **Scenes**: Individual encounters or locations within each act
+- **NPCs**: Character descriptions with appearance details for consistent artwork
+- **Encounter Details**: Combat stats, objectives, and DM guidance
+
+See `Stories/STORY_CREATION_GUIDE.md` for details on creating new adventures.
 
 ## How to Use This Repository
 
@@ -160,13 +228,16 @@ All `.docx` game documents are **programmatically generated** from JavaScript so
 
 **Important**: Edit the `.js` files, NOT the `.docx` files. The `.docx` files are generated outputs.
 
-#### Workflow:
+#### Workflow with Makefile (Recommended):
 1. **Edit** the JavaScript source file (e.g., `rulebook.js`)
-2. **Generate** the document by running: `node filename.js`
-3. **Verify** the output `.docx` file looks correct
+2. **Generate** documents using `make`:
+   - `make docs` - Generate all documents
+   - `make docs-rules` - Generate only Rules and Guides documents
+   - `make docs-stories` - Generate only Story documents
+3. **Verify** the output `.docx` files look correct
 4. **Commit** the `.js` file to version control
 
-#### Example - Editing the Rulebook:
+#### Manual Workflow (Alternative):
 
 ```bash
 # Edit the source file
@@ -183,20 +254,18 @@ git add Rules_and_Guides/rulebook.js
 git commit -m "Update rulebook: add new class ability"
 ```
 
-#### Example - Generating All Documents:
+#### Example - Generating All Documents with Make:
 
 ```bash
-# Navigate to Rules_and_Guides
-cd Rules_and_Guides
-node rulebook.js
-node character_sheets.js
-node character_art.js
-node getting_started.js
+# Generate all documents
+make docs
 
-# Navigate to Stories/The_Dragons_Friends
-cd ../Stories/The_Dragons_Friends/
-node adventure.js
-node maps.js
+# Or generate specific document types
+make docs-rules
+make docs-stories
+
+# Clean up generated documents if needed
+make docs-clean
 ```
 
 ### File Formats
