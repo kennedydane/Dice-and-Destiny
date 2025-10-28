@@ -21,9 +21,17 @@ Dice-and-Destiny/
 │   │   ├── Dwarf/, Elf/, Gnome/
 │   │   ├── Half Elf/, Halfling/
 │   │   └── Human/
-│   └── Stories/                     # Campaign-specific artwork
-│       └── The_Dragons_Friends/
-│           └── Act 1/               # Scene artwork organized by act
+│   ├── Stories/                     # Campaign-specific artwork
+│   │   └── The_Dragons_Friends/
+│   │       └── Act 1/               # Scene artwork organized by act
+│   ├── generator/                   # Python CLI for generating art prompts
+│   │   ├── main.py                  # CLI entry point (character, adventure, api-test)
+│   │   ├── generators/              # Character and adventure prompt generators
+│   │   ├── prompts/                 # Prompt templates and base styles
+│   │   ├── api/                     # Gemini API client (optional)
+│   │   ├── config.py                # Configuration management
+│   │   └── pyproject.toml           # Python package configuration
+│   └── generated/                   # Output prompts from generator
 │
 ├── Rules_and_Guides/                # Core game documentation (source + generated)
 │   ├── rulebook.js                  # Source: Rulebook content
@@ -36,11 +44,13 @@ Dice-and-Destiny/
 │   └── Getting_Started_Guide.docx   # Generated from getting_started.js
 │
 └── Stories/                         # Adventure modules (source + generated)
-    └── The_Dragons_Friends/
-        ├── adventure.js             # Source: Adventure content
-        ├── Adventure_The_Dragons_Friends.docx # Generated from adventure.js
-        ├── maps.js                  # Source: Maps content
-        └── Game_Maps.docx           # Generated from maps.js
+    ├── The_Dragons_Friends/
+    │   ├── adventure.js             # Source: Adventure content
+    │   ├── Adventure_The_Dragons_Friends.docx # Generated from adventure.js
+    │   ├── maps.js                  # Source: Maps content
+    │   └── Game_Maps.docx           # Generated from maps.js
+    ├── STORY_CREATION_GUIDE.md      # Guide for creating new adventures
+    └── STORY_TEMPLATE.js            # Template starter file for new adventures
 ```
 
 **Note**: JavaScript `.js` files are the source of truth. `.docx` files are generated outputs.
@@ -145,11 +155,53 @@ Each file contains:
 - PNG format preferred for web compatibility
 - Consider both digital display and print quality
 
+### Makefile Automation
+
+A `Makefile` is included to automate document generation:
+
+```bash
+# Generate all documents
+make docs
+
+# Generate specific document types
+make docs-rules       # Rules and Guides only
+make docs-stories     # Adventure stories only
+
+# Clean up generated documents
+make docs-clean
+```
+
+This is the recommended workflow instead of running individual `node` commands.
+
+### Adventure Structure in Documents
+
+Adventures use a hierarchical structure that's automatically parsed for the artwork generator:
+
+1. **NPC Descriptions Section** (required)
+   - Lists all major NPCs with role, appearance, personality, and scenes
+   - Used to generate consistent character descriptions for artwork
+   - Example format: See The_Dragons_Friends/adventure.js
+
+2. **Acts** (major story divisions)
+   - Format: `# Act N: Act Title`
+   - Contains scenes and encounters
+
+3. **Scenes** (specific encounters or locations)
+   - Format: `## Scene N: Scene Title`
+   - Contains read-aloud text and DM guidance
+   - DM sections marked with blue color (color: "2E5C8A")
+
+4. **Scene Content** (automatically parsed)
+   - Read-aloud text gives narrative context
+   - DM guidance provides mechanics and tips
+   - Parsed to extract prompts for the artwork generator
+
 ### Version Control
 - **Commit `.js` files**: These are your source of truth
-- **Don't commit `.docx` files**: These are generated outputs (update them locally, regenerate as needed)
+- **Commit generated `.docx` files**: Include them so others can view documents without Node.js
 - Use descriptive commit messages: "Update rulebook: add new spellcasting rules"
 - Keep track of rule changes across related files (e.g., if you add a class, update both rulebook.js and character_sheets.js)
+- For adventures: Keep `.docx` in sync with `.js` for artwork generation
 
 ### Content Consistency
 When updating rules or mechanics:
@@ -172,18 +224,84 @@ Example: `Human/Warrior_Male.png`, `Elf/Wizard_Female.png`
 
 Ensure new artwork adheres to this convention for easy identification and organization.
 
+## Artwork Generator System
+
+### Overview
+
+The project includes a Python-based CLI tool (`Artwork/generator/`) for generating AI image prompts for both character artwork and adventure scenes. The generator parses game documents and creates detailed prompts suitable for image generation services like Gemini, Midjourney, or Stable Diffusion.
+
+### Key Features
+
+- **Character Prompt Generation**: Creates prompts based on race, class, gender, and art style selections
+- **Adventure Scene Prompts**: Generates scene prompts that include NPC visual descriptions for consistency
+- **Dynamic Art Styles**: Supports 6 different art styles (Fantasy, Photorealistic, Cartoon, Watercolor, Concept Art, Oil Painting)
+- **NPC Consistency**: Automatically extracts NPC descriptions from adventure documents to ensure consistent character rendering across scenes
+- **Direct .docx Parsing**: Parses acts and scenes directly from adventure .docx files using markitdown
+
+### Usage
+
+```bash
+# Character prompt generation (interactive)
+generate-image character
+
+# Adventure scene prompt generation (interactive)
+generate-image adventure
+
+# Character prompt with specific options
+generate-image character --race elf --class wizard --gender female --style photorealistic
+
+# Adventure prompt with specific options
+generate-image adventure --story "The_Dragons_Friends" --act 1 --scene "1" --style fantasy
+```
+
+### How It Works
+
+1. **Character Generation**:
+   - User selects race, class, gender, and art style
+   - Generator loads character descriptions from `base_prompts.py`
+   - Creates detailed prompt with style guidelines and character specs
+   - Saves prompt to `Artwork/generated/`
+
+2. **Adventure Scene Generation**:
+   - User selects story, act, scene, and art style
+   - Generator parses .docx file to find acts and scenes
+   - Extracts scene narrative content from the document
+   - Loads NPC descriptions from the adventure
+   - Creates prompt with style, NPCs, requirements, and scene description
+   - Saves prompt to `Artwork/generated/`
+
+### Development Notes
+
+- **Main CLI**: `Artwork/generator/main.py`
+- **Character Generator**: `Artwork/generator/generators/character_generator.py`
+- **Adventure Generator**: `Artwork/generator/generators/adventure_generator.py`
+- **Prompt Templates**: `Artwork/generator/prompts/base_prompts.py`
+- **Configuration**: `Artwork/generator/config.py`
+
+When modifying prompts or adding features, update the relevant files in the generator directory and regenerate prompts to test changes.
+
 ## Common Tasks
 
 ### Adding a New Adventure Module
 
-1. Create new directory in `Stories/` (e.g., `Stories/The_New_Adventure/`)
-2. Create main adventure `.js` source file (e.g., `adventure.js`)
-3. Create maps `.js` source file (e.g., `maps.js`)
-4. Generate documents by running: `node adventure.js` and `node maps.js`
-5. Create corresponding artwork directory (e.g., `Artwork/Stories/The_New_Adventure/`)
-6. Organize scene artwork by act (e.g., `Artwork/Stories/The_New_Adventure/Act 1/`, `Act 2/`)
-7. Name scene artwork descriptively (e.g., `Act 1 Scene 1.png`, `Act 1 Scene 2.png`)
-8. Commit the `.js` files (not the `.docx` files)
+1. **Read the guide**: Check `Stories/STORY_CREATION_GUIDE.md` for detailed instructions
+2. **Use the template**: Copy `Stories/STORY_TEMPLATE.js` as your starting point
+3. Create new directory in `Stories/` (e.g., `Stories/The_New_Adventure/`)
+4. Create your adventure `.js` file (e.g., `adventure.js`) - use STORY_TEMPLATE.js as reference
+5. Create your maps `.js` file (e.g., `maps.js`)
+6. **Important**: Include an "NPC Descriptions" section that lists all major NPCs with:
+   - Role in the adventure
+   - Physical appearance (for artwork consistency)
+   - Personality and behavior
+   - Which scenes they appear in
+7. Structure acts and scenes with proper markdown headings:
+   - `# Act N: Title` for act headings
+   - `## Scene N: Title` for scene headings
+8. Generate documents: `make docs-stories` or `node adventure.js && node maps.js`
+9. Create corresponding artwork directory (e.g., `Artwork/Stories/The_New_Adventure/`)
+10. Organize scene artwork by act (e.g., `Artwork/Stories/The_New_Adventure/Act 1/`, `Act 2/`)
+11. Name scene artwork descriptively (e.g., `Act 1 Scene 1.png`, `Act 1 Scene 2.png`)
+12. Commit the `.js` files and generated `.docx` files
 
 ### Updating Game Rules
 
